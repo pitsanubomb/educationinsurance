@@ -6,12 +6,9 @@ export class UsersDTO {
 
   @ApiModelProperty()
   username: string
-
-  @ApiModelProperty()
-  password: string
 }
 
-export class CreateUsersDTO {
+export class CreateUserBody {
   @ApiModelProperty()
   username: string
 
