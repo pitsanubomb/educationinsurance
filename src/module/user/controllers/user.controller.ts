@@ -13,12 +13,16 @@ import {
 } from '@nestjs/swagger'
 import { UserService } from '../services/user.service'
 import { CreateUserDTO, UserDTO } from '../userdto/user.dto'
+import { JwtToken } from '../../sharemodule/jwt/jwttoken'
 
 @Controller('user')
 @ApiUseTags('User')
 @ApiBearerAuth()
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    public jwt: JwtToken,
+  ) {}
 
   @Post('register')
   @ApiOperation({
@@ -57,7 +61,11 @@ export class UserController {
         userBody.username,
         userBody.username,
       )
-      return loginRes.toDto()
+      const jwt = await this.jwt.genToken(loginRes)
+      return {
+        user: loginRes.username,
+        token: jwt,
+      }
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }
