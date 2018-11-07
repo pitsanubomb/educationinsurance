@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { User } from '../entities/user.entity'
 import { Repository } from 'typeorm'
 import { CreateUserDTO } from '../userdto/user.dto'
-import { genSalt, hash } from 'bcrypt'
+import { genSalt, hash, compare } from 'bcrypt'
 
 @Injectable()
 export class UserService {
@@ -47,6 +47,36 @@ export class UserService {
         { message: 'ไม่สามารถเพิ่มผู้ใช้งานได้', error },
         HttpStatus.BAD_REQUEST,
       )
+    }
+  }
+
+  async getUserbyUsername(_username: string) {
+    const user = await this.userRepo.findOne({ username: _username })
+    return user
+  }
+
+  async loginUser($username: string, $password: string) {
+    const user = await this.getUserbyUsername($username)
+    if (!user) {
+      throw new HttpException('ไม่พบผู้ใช้งานคะ', HttpStatus.BAD_REQUEST)
+    }
+
+    const isMath = await compare($password, user.password)
+
+    if (!isMath) {
+      throw new HttpException(
+        'รหัสผ่านผิดกรุณาใส่รหัสผ่านใหม่อีกครั้งคะ',
+        HttpStatus.BAD_REQUEST,
+      )
+    }
+    try {
+      const res = await this.userRepo.findOne({
+        username: $username,
+        password: user.password,
+      })
+      return res
+    } catch (error) {
+      throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }
   }
 }

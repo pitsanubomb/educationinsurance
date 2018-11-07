@@ -36,10 +36,30 @@ export class UserController {
       const userRes = await this.userService.createUser(userBody)
       return userRes.toDto()
     } catch (error) {
-      throw new HttpException(
-        { message: 'ไม่สามารถเพิ่มผู้ใช้งานได้' },
-        HttpStatus.BAD_REQUEST,
+      throw new HttpException(error, HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  @Post('login')
+  @ApiOperation({
+    title: 'เข้าสู่ระบบ',
+    description: 'เข้าสู่ระบบเพื่อใช้งาน และ ได้สิทธิ์',
+    operationId: 'Login User',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: UserDTO,
+    description: 'เข้าสู่ระบบสำเร็จ',
+  })
+  async login(@Body() userBody: CreateUserDTO) {
+    try {
+      const loginRes = await this.userService.loginUser(
+        userBody.username,
+        userBody.username,
       )
+      return loginRes.toDto()
+    } catch (error) {
+      throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }
   }
 }
