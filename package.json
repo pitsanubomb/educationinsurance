@@ -23,6 +23,8 @@
       "@nestjs/core": "^5.4.0",
       "@nestjs/swagger": "^2.5.1",
       "@nestjs/typeorm": "^5.2.2",
+      "@types/bcrypt": "^3.0.0",
+      "bcrypt": "^3.0.2",
       "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.10",
       "rimraf": "^2.6.2",
