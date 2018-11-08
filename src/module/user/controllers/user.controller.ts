@@ -4,6 +4,7 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common'
 import {
   ApiUseTags,
@@ -14,10 +15,11 @@ import {
 import { UserService } from '../services/user.service'
 import { CreateUserDTO, UserDTO } from '../userdto/user.dto'
 import { JwtToken } from '../../sharemodule/jwt/jwttoken'
+import { AuthGuard } from '../../sharemodule/auth/auth.guard'
 
 @Controller('user')
 @ApiUseTags('User')
-// @ApiBearerAuth()
+@ApiBearerAuth()
 export class UserController {
   constructor(
     private readonly userService: UserService,
@@ -25,6 +27,7 @@ export class UserController {
   ) {}
 
   @Post('register')
+  @UseGuards(new AuthGuard())
   @ApiOperation({
     title: 'เพิ่มผู้ใช้งาน',
     description: 'เพิ่มผู้ใช้งานเพื่อเข้าใช้งานระบบ',
@@ -36,6 +39,13 @@ export class UserController {
     description: 'เพิ่มผู้ใช้งานสำเร็จ',
   })
   async create(@Body() userBody: CreateUserDTO) {
+    const user = this.userService.getUserbyUsername(userBody.username)
+    if (user) {
+      throw new HttpException(
+        'มีชื่อผู้ใช้งานอยู่แล้วไม่สามารถ เพิ่มผู้ใช้งานได้',
+        HttpStatus.BAD_REQUEST,
+      )
+    }
     try {
       const userRes = await this.userService.createUser(userBody)
       return userRes.toDto()
