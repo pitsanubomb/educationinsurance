@@ -17,7 +17,7 @@ import { JwtToken } from '../../sharemodule/jwt/jwttoken'
 
 @Controller('user')
 @ApiUseTags('User')
-@ApiBearerAuth()
+// @ApiBearerAuth()
 export class UserController {
   constructor(
     private readonly userService: UserService,
