@@ -13,7 +13,7 @@ export class UserGroup {
   @OneToMany(type => User, user => user.usergroup)
   users: User[]
 
-  constructure(id?: number) {
+  constructor(id?: number) {
     this.id = id
   }
 
