@@ -27,7 +27,7 @@ export class UserController {
   ) {}
 
   @Post('register')
-  @UseGuards(new AuthGuard())
+  @UseGuards(AuthGuard)
   @ApiOperation({
     title: 'เพิ่มผู้ใช้งาน',
     description: 'เพิ่มผู้ใช้งานเพื่อเข้าใช้งานระบบ',
