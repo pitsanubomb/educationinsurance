@@ -1,17 +1,12 @@
-import { ApiModelProperty } from '@nestjs/swagger'
-import { UserGroup } from '../entities/usergroup'
-import { UsergroupDTO } from './usergroup.dto'
+import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger'
+import { UsergroupIdDTO } from './usergroup.dto'
 
 export class UserDTO {
   @ApiModelProperty()
   readonly username: string
 
-  @ApiModelProperty({
-    description: 'กลุ่มผู้ใช้งาน',
-    example: 'admin',
-    type: UsergroupDTO,
-  })
-  readonly usergroup: UsergroupDTO
+  @ApiModelProperty({ type: UsergroupIdDTO })
+  usergroup: UsergroupIdDTO
 }
 
 export class CreateUserDTO {
@@ -20,8 +15,11 @@ export class CreateUserDTO {
     example: 'admin',
     minimum: 4,
   })
-  readonly username: string
+  username: string
 
   @ApiModelProperty()
-  readonly password: string
+  password: string
+
+  @ApiModelPropertyOptional()
+  groupId: number
 }

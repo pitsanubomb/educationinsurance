@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
 import { UserDTO } from '../userdto/user.dto'
-import { UserGroup } from './usergroup'
+import { UserGroup } from './usergroup.entity'
 
 @Entity()
 export class User {
@@ -20,7 +20,7 @@ export class User {
     return {
       username: this.username,
       usergroup: {
-        name: this.usergroup.name,
+        id: this.usergroup.id,
       },
     }
   }
