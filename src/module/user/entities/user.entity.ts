@@ -17,9 +17,11 @@ export class User {
   usergroup: UserGroup
 
   toDto(): UserDTO {
-    const data = this
     return {
-      username: data.username,
+      username: this.username,
+      usergroup: {
+        name: this.usergroup.name,
+      },
     }
   }
 }
