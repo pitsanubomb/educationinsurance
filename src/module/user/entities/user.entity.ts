@@ -1,22 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { UserDTO } from '../userdto/user.dto';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { UserDTO } from '../userdto/user.dto'
+import { UserGroup } from './usergroup'
 
-@Entity('user')
-
+@Entity()
 export class User {
-    @PrimaryGeneratedColumn()
-    uid: number
+  @PrimaryGeneratedColumn()
+  uid: number
 
-    @Column()
-    username: string
+  @Column()
+  username: string
 
-    @Column()
-    password: string
+  @Column()
+  password: string
 
-    toDto(): UserDTO {
-        const data = this
-        return {
-            username: data.username,
-        }
+  @ManyToOne(type => UserGroup, usergroup => usergroup.users)
+  usergroup: UserGroup
+
+  toDto(): UserDTO {
+    const data = this
+    return {
+      username: data.username,
     }
+  }
 }
