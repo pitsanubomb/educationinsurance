@@ -39,7 +39,7 @@ export class UserController {
     description: 'เพิ่มผู้ใช้งานสำเร็จ',
   })
   async create(@Body() userBody: CreateUserDTO) {
-    const user = this.userService.getUserbyUsername(userBody.username)
+    const user = await this.userService.getUserbyUsername(userBody.username)
     if (user) {
       throw new HttpException(
         'มีชื่อผู้ใช้งานอยู่แล้วไม่สามารถ เพิ่มผู้ใช้งานได้',
