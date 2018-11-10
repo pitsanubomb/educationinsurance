@@ -7,11 +7,14 @@ import {
 } from '@nestjs/common'
 import * as jwt from 'jsonwebtoken'
 import { JWTSECRET } from '../jwt/jwtconfig'
+import { Reflector } from '@nestjs/core'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  constructor(private readonly reflector: Reflector) {}
   async canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest()
+    const roles = this.reflector.get<string[]>('roles', context.getHandler())
     if (request) {
       if (!request.headers.authorization) {
         throw new HttpException(
@@ -19,7 +22,7 @@ export class AuthGuard implements CanActivate {
           HttpStatus.UNAUTHORIZED,
         )
       }
-      request.user = await this.validateToken(request.headers.authorization)
+      const user = await this.validateToken(request.headers.authorization)
       return true
     }
   }

@@ -16,6 +16,7 @@ import { UserService } from '../services/user.service'
 import { CreateUserDTO, UserDTO } from '../userdto/user.dto'
 import { JwtToken } from '../../sharemodule/jwt/jwttoken'
 import { AuthGuard } from '../../sharemodule/auth/auth.guard'
+import { Roles } from 'src/module/sharemodule/decorate/role.decorate'
 
 @Controller('user')
 @ApiUseTags('User')
@@ -28,6 +29,7 @@ export class UserController {
 
   @Post('register')
   @UseGuards(AuthGuard)
+  @Roles('admin')
   @ApiOperation({
     title: 'เพิ่มผู้ใช้งาน',
     description: 'เพิ่มผู้ใช้งานเพื่อเข้าใช้งานระบบ',
@@ -69,11 +71,11 @@ export class UserController {
     try {
       const loginRes = await this.userService.loginUser(
         userBody.username,
-        userBody.username,
+        userBody.password,
       )
       const jwt = await this.jwt.genToken(loginRes)
       return {
-        user: loginRes.username,
+        user: loginRes,
         token: jwt,
       }
     } catch (error) {

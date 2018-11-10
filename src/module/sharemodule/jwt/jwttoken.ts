@@ -6,15 +6,15 @@ import { Injectable } from '@nestjs/common'
 @Injectable()
 export class JwtToken {
   public genToken(user: User) {
-    const today = new Date()
-    const exp = new Date(today)
-    exp.setDate(today.getDate() + 60)
-
+    const exp = new Date()
+    exp.setDate(exp.getDate() + 1)
+    const expTime = Math.floor(new Date(exp).getTime() / 1000)
     return jwt.sign(
       {
         id: user.uid,
         username: user.username,
-        exp: exp.getTime() + 1000,
+        role: user.usergroup,
+        exp: expTime,
       },
       JWTSECRET,
     )

@@ -72,8 +72,11 @@ export class UserService {
     }
     try {
       const res = await this.userRepo.findOne({
-        username: $username,
-        password: user.password,
+        where: {
+          username: $username,
+          password: user.password,
+        },
+        relations: ['usergroup'],
       })
       return res
     } catch (error) {
