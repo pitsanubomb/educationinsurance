@@ -16,7 +16,7 @@ import { UserService } from '../services/user.service'
 import { CreateUserDTO, UserDTO } from '../userdto/user.dto'
 import { JwtToken } from '../../sharemodule/jwt/jwttoken'
 import { AuthGuard } from '../../sharemodule/auth/auth.guard'
-import { Roles } from 'src/module/sharemodule/decorate/role.decorate'
+import { Roles } from '../../sharemodule/decorate/role.decorate'
 
 @Controller('user')
 @ApiUseTags('User')

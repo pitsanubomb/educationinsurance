@@ -14,7 +14,7 @@ export async function genDoc(app) {
   app.use('/api/docs/swagger.json', (req, res) => {
     res.send(swaggerDocument)
   })
-  SwaggerModule.setup('api/v0.0.1/doc', app, swaggerDocument, {
+  SwaggerModule.setup('api/doc', app, swaggerDocument, {
     swaggerOptions: {
       docExpansion: 'list',
       filter: true,

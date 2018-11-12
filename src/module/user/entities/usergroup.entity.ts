@@ -3,7 +3,7 @@ import { User } from './user.entity'
 import { UsergroupDTO } from '../userdto/usergroup.dto'
 
 @Entity()
-export class UserGroup {
+export class Usergroup {
   @PrimaryGeneratedColumn()
   id: number
 

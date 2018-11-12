@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
 import { UserDTO } from '../userdto/user.dto'
-import { UserGroup } from './usergroup.entity'
+import { Usergroup } from './usergroup.entity'
 
 @Entity()
 export class User {
@@ -13,8 +13,8 @@ export class User {
   @Column()
   password: string
 
-  @ManyToOne(type => UserGroup, usergroup => usergroup.users)
-  usergroup: UserGroup
+  @ManyToOne(type => Usergroup, usergroup => usergroup.users)
+  usergroup: Usergroup
 
   toDto(): UserDTO {
     return {

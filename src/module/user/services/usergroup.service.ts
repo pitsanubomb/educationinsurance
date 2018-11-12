@@ -1,18 +1,18 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
 import { Repository } from 'typeorm'
-import { UserGroup } from '../entities/usergroup.entity'
+import { Usergroup } from '../entities/usergroup.entity'
 import { InjectRepository } from '@nestjs/typeorm'
 import { CreateUsergroup } from '../userdto/usergroup.dto'
 
 @Injectable()
 export class UserGroupService {
   constructor(
-    @InjectRepository(UserGroup)
-    private readonly usergroupRepo: Repository<UserGroup>,
+    @InjectRepository(Usergroup)
+    private readonly usergroupRepo: Repository<Usergroup>,
   ) {}
 
   async create(body: CreateUsergroup) {
-    const usergroup = new UserGroup()
+    const usergroup = new Usergroup()
     usergroup.name = body.name
 
     try {
