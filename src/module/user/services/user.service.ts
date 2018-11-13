@@ -4,7 +4,7 @@ import { User } from '../entities/user.entity'
 import { Repository } from 'typeorm'
 import { CreateUserDTO } from '../userdto/user.dto'
 import { genSalt, hash, compare } from 'bcrypt'
-import { UserGroup } from '../entities/usergroup.entity'
+import { Usergroup } from '../entities/usergroup.entity'
 
 @Injectable()
 export class UserService {
@@ -39,7 +39,7 @@ export class UserService {
     newUser.username = username
     const salt = await genSalt(10)
     newUser.password = await hash(password, salt)
-    newUser.usergroup = new UserGroup(body.groupId)
+    newUser.usergroup = new Usergroup(body.groupId)
     try {
       const user = await this.userRepo.save(newUser)
       return user
