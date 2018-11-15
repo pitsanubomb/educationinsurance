@@ -1,0 +1,37 @@
+apiVersion: extensions/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - image: alpine:3.8
+          name: nodejs
+          env:
+            - name: NODE_DB_HOST
+              value: mysql:3306
+            - name: NODE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql
+                  key: password
+          ports:
+            - containerPort: 80
+              name: nodejs
+          volumeMounts:
+            - name: nodejs-persistent-storage
+              mountPath: /var/www/html
+      volumes:
+        - name: nodejs-persistent-storage
+          persistentVolumeClaim:
+            claimName: nodejs-volumeclaim

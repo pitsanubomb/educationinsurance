@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1
 kind: Deployment
 metadata:
   name: mysql
@@ -15,7 +15,7 @@ spec:
         app: mysql
     spec:
       containers:
-        - image: mysql:5.6
+        - image: mysql:5.7
           name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
@@ -23,8 +23,6 @@ spec:
                 secretKeyRef:
                   name: mysql
                   key: password
-            - name: MYSQL_DATABASE
-              value: 'educationdev'
           ports:
             - containerPort: 3306
               name: mysql
