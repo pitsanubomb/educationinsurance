@@ -1,4 +1,4 @@
-version: extensions/v1
+apiVersion: extensions/v1.1
 kind: Deployment
 metadata:
   name: mysql
