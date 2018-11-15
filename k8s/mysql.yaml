@@ -23,6 +23,8 @@ spec:
                 secretKeyRef:
                   name: mysql
                   key: password
+            - name: MYSQL_DATABASE
+              value: 'educationdev'
           ports:
             - containerPort: 3306
               name: mysql
