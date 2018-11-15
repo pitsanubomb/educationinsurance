@@ -7,10 +7,5 @@
   "database": "educationdev",
   "synchronize": true,
   "logging": false,
-  "entities": ["src/**/entities/*.ts,*.js"],
-  "cli": {
-    "entitiesDir": "src/entity",
-    "migrationsDir": "src/migration",
-    "subscribersDir": "src/subscriber"
-  }
+  "entities": ["dist/**/entities/*.js"]
 }
