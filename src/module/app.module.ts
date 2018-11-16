@@ -1,7 +1,11 @@
-import { Module } from '@nestjs/common'
-import { Usersmodule } from './users/users.module'
+import { Module } from '@nestjs/common';
+import { Connection } from 'typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Usermodule } from './user/user.module';
 
 @Module({
-  imports: [Usersmodule],
+  imports: [TypeOrmModule.forRoot(), Usermodule],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly connection: Connection) { }
+}

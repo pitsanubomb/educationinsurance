@@ -1,6 +1,9 @@
 .idea/
 .vscode/
+ormconfig.json
+ormlogs.log
 node_modules/
 build/
 tmp/
 temp/
+dist/
