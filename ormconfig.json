@@ -7,5 +7,5 @@
   "database": "educationdev",
   "synchronize": true,
   "logging": false,
-  "entities": ["src/**/entities/*.ts"]
+  "entities": ["dist/**/entities/*.js"]
 }
