@@ -44,7 +44,6 @@
 "@nestjs/swagger@^2.5.1":
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-2.5.1.tgz#f05e96ee82fa2b6b9c5a508b55bb0162fa025068"
-  integrity sha512-pixAD2+mOLOyvvFjkyRaPxNcFVygOBhCt1Jn2FO2QAYjuuxjaNckytMpJD+iMvLDCpb5eAbd7qjhJ6LiGhRLug==
   dependencies:
     lodash "^4.17.4"
     path-to-regexp "^2.2.1"
@@ -56,7 +55,6 @@
 "@nestjs/testing@^5.4.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-5.4.0.tgz#4728021fc4012243b4dd2ffb4228b59df7770235"
-  integrity sha512-goZk+ACEUxu8MG2xRlqYPW8SkIX74Xn4G3ozUsdkapTBR60XG1DpNucuWSISePS+ytaUKaaaRKARgbXx417DIw==
   dependencies:
     deprecate "1.0.0"
     optional "0.1.4"
@@ -79,6 +77,10 @@
 "@types/bcrypt@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/bcrypt/-/bcrypt-3.0.0.tgz#851489a9065a067cb7f3c9cbe4ce9bed8bba0876"
+
+"@types/bcryptjs@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@types/bcryptjs/-/bcryptjs-2.4.2.tgz#e3530eac9dd136bfdfb0e43df2c4c5ce1f77dfae"
 
 "@types/body-parser@*":
   version "1.17.0"
@@ -771,7 +773,6 @@ ci-info@^1.5.0:
 class-transformer@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.2.0.tgz#e54b34112e8ef7f913ef938c81fed8ed949fc9c7"
-  integrity sha512-6N/5WkEmLZCKxyC2CAPYQIJt3pDZzDFag7AExpyWRm7CjaS/U62VDRU+Z2AUrQaNpnuiXRlli0so4PJUqGSVZQ==
 
 class-utils@^0.3.5:
   version "0.3.6"
@@ -785,7 +786,6 @@ class-utils@^0.3.5:
 class-validator@^0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.9.1.tgz#d60e58c5d14abca0a41bce38cf792ad4c46d1531"
-  integrity sha512-3wApflrd3ywVZyx4jaasGoFt8pmo4aGLPPAEKCKCsTRWVGPilahD88q3jQjRQwja50rl9a7rsP5LAxJYwGK8/Q==
   dependencies:
     google-libphonenumber "^3.1.6"
     validator "10.4.0"
@@ -1669,7 +1669,6 @@ globals@^9.18.0:
 google-libphonenumber@^3.1.6:
   version "3.1.15"
   resolved "https://registry.yarnpkg.com/google-libphonenumber/-/google-libphonenumber-3.1.15.tgz#534d923bc7dcaf0235d4320f631229c1c78de2c8"
-  integrity sha512-KmGOCMoeSMlXauNgBNmscpygZkqu9W4brL1JfEo+dvbCYXIfLUZVPS4MXGlE5BuLE+HBEPwSX4LEyu1PwgKWvw==
 
 got@^6.7.1:
   version "6.7.1"
@@ -3744,7 +3743,6 @@ rsvp@^3.3.3:
 rxjs@^6.2.2:
   version "6.3.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.3.3.tgz#3c6a7fa420e844a81390fb1158a9ec614f4bad55"
-  integrity sha512-JTWmoY9tWCs7zvIk/CvRjhjGaOd+OVBM987mxFo+OW66cGpdKjZcpmc74ES1sB//7Kl/PAe8+wEakuhG4pcgOw==
   dependencies:
     tslib "^1.9.0"
 
@@ -4502,7 +4500,6 @@ validate-npm-package-license@^3.0.1:
 validator@10.4.0:
   version "10.4.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-10.4.0.tgz#ee99a44afb3bb5ed350a159f056ca72a204cfc3c"
-  integrity sha512-Q/wBy3LB1uOyssgNlXSRmaf22NxjvDNZM2MtIQ4jaEOAB61xsh1TQxsq1CgzUMBV1lDrVMogIh8GjG1DYW0zLg==
 
 vary@^1, vary@~1.1.2:
   version "1.1.2"
