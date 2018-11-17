@@ -14,9 +14,9 @@ import {
 } from '@nestjs/swagger'
 import { UserService } from '../services/user.service'
 import { CreateUserDTO, UserDTO } from '../userdto/user.dto'
-import { JwtToken } from '../../sharemodule/jwt/jwttoken'
-import { AuthGuard } from '../../sharemodule/auth/auth.guard'
-import { Roles } from '../../sharemodule/decorate/role.decorate'
+import { JwtToken } from '../../share/jwt/jwttoken';
+import { AuthGuard } from '../../share/auth/auth.guard';
+import { Roles } from '../../share/decorate/role.decorate';
 
 @Controller('user')
 @ApiUseTags('User')

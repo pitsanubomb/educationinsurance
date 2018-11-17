@@ -14,7 +14,7 @@ import {
 } from '@nestjs/swagger'
 import { UserGroupService } from '../services/usergroup.service'
 import { CreateUsergroup, UsergroupDTO } from '../userdto/usergroup.dto'
-import { AuthGuard } from '../../sharemodule/auth/auth.guard'
+import { AuthGuard } from '../../share/auth/auth.guard';
 
 @Controller('usergroup')
 @ApiUseTags('Usergroup')
