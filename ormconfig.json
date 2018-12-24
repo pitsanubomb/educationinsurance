@@ -1,9 +1,9 @@
 {
   "type": "mysql",
-  "host": "35.247.172.111",
+  "host": "localhost",
   "port": 3306,
   "username": "root",
-  "password": "Y4nys7f11",
+  "password": "cg@ut055440087",
   "database": "educationdev",
   "synchronize": true,
   "logging": false,

@@ -51,6 +51,16 @@ export class UserService {
     }
   }
 
+  async getAllusers() {
+    const users = await this.userRepo.find()
+    return users
+  }
+
+  async getUserbyUsergroup(_groupId: number) {
+    const users = await this.userRepo.find({ groupId: _groupId })
+    return users
+  }
+
   async getUserbyUsername(_username: string) {
     const user = await this.userRepo.findOne({ username: _username })
     return user

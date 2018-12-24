@@ -5,6 +5,7 @@ import {
   HttpException,
   HttpStatus,
   UseGuards,
+  Get,
 } from '@nestjs/common'
 import {
   ApiUseTags,
@@ -14,9 +15,9 @@ import {
 } from '@nestjs/swagger'
 import { UserService } from '../services/user.service'
 import { CreateUserDTO, UserDTO } from '../userdto/user.dto'
-import { JwtToken } from '../../share/jwt/jwttoken';
-import { AuthGuard } from '../../share/auth/auth.guard';
-import { Roles } from '../../share/decorate/role.decorate';
+import { JwtToken } from '../../share/jwt/jwttoken'
+import { AuthGuard } from '../../share/auth/auth.guard'
+import { Roles } from '../../share/decorate/role.decorate'
 
 @Controller('user')
 @ApiUseTags('User')
@@ -78,6 +79,41 @@ export class UserController {
         user: loginRes,
         token: jwt,
       }
+    } catch (error) {
+      throw new HttpException(error, HttpStatus.BAD_REQUEST)
+    }
+  }
+  @Get('allusers')
+  @ApiOperation({
+    title: 'ดึงข้อมูลผู้ใช้ทั้งหมด',
+    description: 'ดึงข้อมูลผู้ใช้ทั้งหมดในระบบ',
+    operationId: 'Get All Users',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'ดึงข้อมูลผู้ใช้ทั้งหมดสำเร็จ',
+  })
+  async getallusers() {
+    try {
+      return await this.userService.getAllusers()
+    } catch (error) {
+      throw new HttpException(error, HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  @Get('allusers by group')
+  @ApiOperation({
+    title: 'ดึงข้อมูลผู้ใช้ทั้งหมดตาม กลุ่มผู้ใช้',
+    description: 'ดึงข้อมูลผู้ใช้ทั้งหมดตาม กลุ่มผู้ใช้',
+    operationId: 'Get All Users By group',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'ดึงข้อมูลผู้ใช้ทั้งหมดสำเร็จ',
+  })
+  async getallusersbygroup(groupId: number) {
+    try {
+      return await this.userService.getUserbyUsergroup(groupId)
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }
