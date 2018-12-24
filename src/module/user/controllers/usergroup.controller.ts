@@ -14,7 +14,8 @@ import {
 } from '@nestjs/swagger'
 import { UserGroupService } from '../services/usergroup.service'
 import { CreateUsergroup, UsergroupDTO } from '../userdto/usergroup.dto'
-import { AuthGuard } from '../../share/auth/auth.guard';
+import { AuthGuard } from '../../share/auth/auth.guard'
+import { Roles } from '../../share/decorate/role.decorate'
 
 @Controller('usergroup')
 @ApiUseTags('Usergroup')
@@ -24,6 +25,7 @@ export class UserGroupController {
 
   @Post()
   @UseGuards(AuthGuard)
+  @Roles('admin')
   @ApiOperation({
     title: 'เพิ่มกลุ่มผู้ใช้งาน',
     description: 'เพิ่มกลุ่มผู้ใช้งานให้ผู้ใช้เพื่อกำหนดสิทธิ์',

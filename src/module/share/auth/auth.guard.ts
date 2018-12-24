@@ -23,13 +23,12 @@ export class AuthGuard implements CanActivate {
         )
       }
       const user = await this.validateToken(request.headers.authorization)
-      if(roles[0] === user['role']['name'])
-        return true
-      else 
-      throw new HttpException(
-        'กรุณาลงชื่อเข้าใช้งานในสิทธิ์ ' + roles[0],
-        HttpStatus.UNAUTHORIZED,
-      )
+      if (roles[0] === user['role']['name']) return true
+      else
+        throw new HttpException(
+          'กรุณาลงชื่อเข้าใช้งานในสิทธิ์ ' + roles[0],
+          HttpStatus.UNAUTHORIZED,
+        )
     }
   }
 
