@@ -1,0 +1,23 @@
+version: '1'
+
+service :
+  db
+    image: cgloveut/db:v1
+    build:
+      context: ./db
+    network
+      - net
+  
+  app
+    image: cgloveut/app:v1
+    build: .
+    ports: 
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: on-failure
+    networks:
+      - net
+
+networks:
+  net:

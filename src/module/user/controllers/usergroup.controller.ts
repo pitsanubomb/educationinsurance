@@ -36,6 +36,11 @@ export class UserGroupController {
     description: 'เพิ่มกลุ่มผู้ใช้งานสำเร็จ',
   })
   @ApiResponse({
+    status: HttpStatus.CREATED,
+    type: UsergroupDTO,
+    description: 'เพิ่มกลุ่มผู้ใช้งานสำเร็จ',
+  })
+  @ApiResponse({
     status: HttpStatus.BAD_GATEWAY,
     description: 'ไม่สามารถเพิ่มกลุ่มผู้ใช้งานได้',
   })

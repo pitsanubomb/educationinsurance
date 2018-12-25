@@ -6,6 +6,7 @@ import {
   HttpStatus,
   UseGuards,
   Get,
+  Param,
 } from '@nestjs/common'
 import {
   ApiUseTags,
@@ -38,6 +39,11 @@ export class UserController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
+    type: UserDTO,
+    description: 'เพิ่มผู้ใช้งานสำเร็จ',
+  })
+  @ApiResponse({
+    status: HttpStatus.CREATED,
     type: UserDTO,
     description: 'เพิ่มผู้ใช้งานสำเร็จ',
   })
@@ -84,6 +90,8 @@ export class UserController {
     }
   }
   @Get('allusers')
+  @UseGuards(AuthGuard)
+  @Roles('admin')
   @ApiOperation({
     title: 'ดึงข้อมูลผู้ใช้ทั้งหมด',
     description: 'ดึงข้อมูลผู้ใช้ทั้งหมดในระบบ',
@@ -101,7 +109,9 @@ export class UserController {
     }
   }
 
-  @Get('allusers by group')
+  @Get('allusersbygroup/:groupid')
+  @UseGuards(AuthGuard)
+  @Roles('admin')
   @ApiOperation({
     title: 'ดึงข้อมูลผู้ใช้ทั้งหมดตาม กลุ่มผู้ใช้',
     description: 'ดึงข้อมูลผู้ใช้ทั้งหมดตาม กลุ่มผู้ใช้',
@@ -111,9 +121,9 @@ export class UserController {
     status: HttpStatus.OK,
     description: 'ดึงข้อมูลผู้ใช้ทั้งหมดสำเร็จ',
   })
-  async getallusersbygroup(groupId: number) {
+  async getallusersbygroup(@Param('groupid') id: number) {
     try {
-      return await this.userService.getUserbyUsergroup(groupId)
+      return await this.userService.getUserbyUsergroup(id)
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }

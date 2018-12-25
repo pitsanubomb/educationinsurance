@@ -52,13 +52,20 @@ export class UserService {
   }
 
   async getAllusers() {
-    const users = await this.userRepo.find()
+    const users = await this.userRepo.find({ relations: ['usergroup'] })
     return users
   }
 
-  async getUserbyUsergroup(_groupId: number) {
-    const users = await this.userRepo.find({ groupId: _groupId })
-    return users
+  async getUserbyUsergroup(id: number) {
+    const users = await this.userRepo.find({
+      relations: ['usergroup'],
+      where: { usergroup: id },
+    })
+    if (users !== null && users.length !== 0) {
+      return users
+    } else {
+      return 'ไม่พบผู้ใช้งานที่มีสิทธิ์นี้ในระบบ'
+    }
   }
 
   async getUserbyUsername(_username: string) {
