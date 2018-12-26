@@ -5,6 +5,7 @@ import {
   Body,
   HttpStatus,
   HttpException,
+  Get,
 } from '@nestjs/common'
 import {
   ApiUseTags,
@@ -49,6 +50,26 @@ export class YearController {
     try {
       const yearRes = await this.yearService.addYear(yearBody)
       return yearRes.toDTO()
+    } catch (error) {
+      throw new HttpException(error, HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  @Get('getallyears')
+  @UseGuards(AuthGuard)
+  @Roles('admin')
+  @ApiOperation({
+    title: 'ดึงข้อมูลปีการศึกษา',
+    description: 'ดึงข้อมูลปีการศึกษาสำหรับการประเมิน',
+    operationId: 'Get all years',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'ดึงข้อมูลปีการศึกษาสำเร็จ',
+  })
+  async getallyear() {
+    try {
+      return this.yearService.getAllYears()
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }

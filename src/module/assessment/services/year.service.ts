@@ -20,4 +20,12 @@ export class YearService {
       throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }
   }
+
+  async getAllYears() {
+    try {
+      return this.yearRepo.find()
+    } catch (error) {
+      throw new HttpException(error, HttpStatus.BAD_REQUEST)
+    }
+  }
 }
