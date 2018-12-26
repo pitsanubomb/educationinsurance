@@ -5,7 +5,7 @@ export class YearDTO {
     readonly year: number
 }
 
-export class CreateNewYear{
+export class CreateNewYearDTO{
     @ApiModelProperty({ description: 'ปีการศึกษา', example: 2560 })
     readonly year: number
 }

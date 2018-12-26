@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { YearDTO } from '../assessmentdto/year.sdto';
+import { YearDTO } from '../assessmentdto/years.dto';
 
 @Entity()
 export class Year {
@@ -9,7 +9,7 @@ export class Year {
     @Column()
     year: number
 
-    toDto(): YearDTO{
+    toDTO(): YearDTO{
         return {
             year: this.year,
         }
