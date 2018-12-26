@@ -1,23 +1,7 @@
-version: '1'
+version: '3.1'
 
-service :
-  db
-    image: cgloveut/db:v1
-    build:
-      context: ./db
-    network
-      - net
-  
-  app
-    image: cgloveut/app:v1
-    build: .
-    ports: 
-      - "8080:8080"
-    depends_on:
-      - db
-    restart: on-failure
-    networks:
-      - net
-
-networks:
-  net:
+services :
+  db:
+    image: cgloveut/educatationdb:v1
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    restart: always
