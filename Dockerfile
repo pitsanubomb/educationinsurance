@@ -9,7 +9,7 @@ RUN apk update && apk upgrade \
 	&& npm rebuild bcrypt --build-from-source
 
 EXPOSE 8080
-CMD [ "npm", "start:dev" ]
+CMD [ "npm", "start" ]
 
 COPY . .
 

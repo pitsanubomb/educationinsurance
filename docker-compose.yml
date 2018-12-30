@@ -4,4 +4,10 @@ services :
   db:
     image: cgloveut/educatationdb:v1
     command: mysqld --default-authentication-plugin=mysql_native_password
-    restart: always
+  app:
+    image: cgloveut/educationinsurance-backend:v1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: on-failure 
