@@ -4,10 +4,13 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { YearService } from './services/year.service'
 import { JwtToken } from '../share/jwt/jwttoken'
 import { YearController } from './controllers/year.controller'
+import { FacultyService } from './services/faculty.service';
+import { FacultyController } from './controllers/faculty.controller';
+import { Faculty } from './entities/faculty.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Year])],
-  providers: [YearService, JwtToken],
-  controllers: [YearController],
+  imports: [TypeOrmModule.forFeature([Year,Faculty])],
+  providers: [FacultyService,YearService, JwtToken],
+  controllers: [YearController,FacultyController],
 })
 export class Assessmentmodule {}
