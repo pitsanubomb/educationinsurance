@@ -32,8 +32,8 @@ export class AddfacultyDTO{
   username: string
 
   @ApiModelProperty({
-    description: 'facultyname',
-    example: 'คณะวิทยาศาสตร์และเทคโนโลยี',
+    description: 'list facultyname',
+    example: ["คณะวิทยาศาสตร์และเทคโนโลยี","คณะเทคโนโลยีอุตสาหกรรม"],
   })
-  facultyname: string
+  facultyname: Array<string>
 }

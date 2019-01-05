@@ -19,7 +19,6 @@ import { CreateUserDTO, UserDTO, AddfacultyDTO } from '../userdto/user.dto'
 import { JwtToken } from '../../share/jwt/jwttoken'
 import { AuthGuard } from '../../share/auth/auth.guard'
 import { Roles } from '../../share/decorate/role.decorate'
-import { async } from 'rxjs/internal/scheduler/async'
 
 @Controller('user')
 @ApiUseTags('User')

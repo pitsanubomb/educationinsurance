@@ -54,11 +54,14 @@ export class UserService {
   }
 
   async addfaculty(body: AddfacultyDTO) {
+    let facultylist  = []
     try {
       const user = await this.getUserbyUsername(body.username)
       try {
-      const faculty = await this.facultyService.getFacultybyname(body.facultyname)
-      user.faculty = [faculty]
+      body.facultyname.forEach(facultyname => {
+        this.facultyService.getFacultybyname(facultyname).then(res => facultylist.push(res))
+      })
+      user.faculty = facultylist
       try {
         await this.userRepo.save(user)
       } catch (error) {
@@ -71,7 +74,7 @@ export class UserService {
   }
 
   async getAllusers() {
-    const users = await this.userRepo.find({ relations: ['usergroup'] })
+    const users = await this.userRepo.find({ relations: ['usergroup','faculty'] })
     return users
   }
 
