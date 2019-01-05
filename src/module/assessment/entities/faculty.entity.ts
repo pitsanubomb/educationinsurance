@@ -1,6 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm"
 import { FacultyDTO } from "../assessmentdto/faculty.dto"
-import { User } from "../../user/entities/user.entity";
 
 @Entity()
 export class Faculty {
@@ -9,10 +8,6 @@ export class Faculty {
     
     @Column()
     falcultyname: string
-
-    @ManyToMany(type => User)
-    @JoinTable()
-    users: User[]
 
     toDTO(): FacultyDTO{
         return {

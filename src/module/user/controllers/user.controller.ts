@@ -15,10 +15,11 @@ import {
   ApiResponse,
 } from '@nestjs/swagger'
 import { UserService } from '../services/user.service'
-import { CreateUserDTO, UserDTO } from '../userdto/user.dto'
+import { CreateUserDTO, UserDTO, AddfacultyDTO } from '../userdto/user.dto'
 import { JwtToken } from '../../share/jwt/jwttoken'
 import { AuthGuard } from '../../share/auth/auth.guard'
 import { Roles } from '../../share/decorate/role.decorate'
+import { async } from 'rxjs/internal/scheduler/async'
 
 @Controller('user')
 @ApiUseTags('User')
@@ -89,6 +90,33 @@ export class UserController {
       throw new HttpException(error, HttpStatus.BAD_REQUEST)
     }
   }
+
+  @Post('addfaculty')
+  @UseGuards(AuthGuard)
+  @Roles('admin')
+  @ApiOperation({
+    title: 'เพิ่มคณะให้ผู้ใช้',
+    description: 'เพิ่มคณะให้ผู้ใช้เพื่อประเมิน และ ตรวจการประเมิน',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: UserDTO,
+    description: 'เพิ่มคณะให้ผู้ใช้สำเร็จ',
+  })
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    type: UserDTO,
+    description: 'เพิ่มคณะให้ผู้ใช้สำเร็จ',
+  })
+  async addfaculty(@Body() dataBody: AddfacultyDTO) {
+    try {
+      this.userService.addfaculty(dataBody)
+      return this.userService.getUserbyUsername(dataBody.username)
+    } catch (error) {
+      throw new HttpException('ไม่สามารถบันทึกข้อมูลได้คะ กรุณาลองอีกครัง', HttpStatus.BAD_REQUEST)
+    }
+  }
+
   @Get('allusers')
   @UseGuards(AuthGuard)
   @Roles('admin')

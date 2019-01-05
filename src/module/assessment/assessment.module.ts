@@ -12,5 +12,6 @@ import { Faculty } from './entities/faculty.entity';
   imports: [TypeOrmModule.forFeature([Year,Faculty])],
   providers: [FacultyService,YearService, JwtToken],
   controllers: [YearController,FacultyController],
+  exports: [FacultyService],
 })
 export class Assessmentmodule {}

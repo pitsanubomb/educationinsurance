@@ -2,14 +2,16 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { User } from '../entities/user.entity'
 import { Repository } from 'typeorm'
-import { CreateUserDTO } from '../userdto/user.dto'
+import { CreateUserDTO, AddfacultyDTO } from '../userdto/user.dto'
 import { genSalt, hash, compare } from 'bcrypt'
 import { Usergroup } from '../entities/usergroup.entity'
+import { FacultyService } from '../../assessment/services/faculty.service'
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepo: Repository<User>,
+    private readonly facultyService: FacultyService,
   ) {}
 
   async createUser(body: CreateUserDTO) {
@@ -51,6 +53,23 @@ export class UserService {
     }
   }
 
+  async addfaculty(body: AddfacultyDTO) {
+    try {
+      const user = await this.getUserbyUsername(body.username)
+      try {
+      const faculty = await this.facultyService.getFacultybyname(body.facultyname)
+      user.faculty = [faculty]
+      try {
+        await this.userRepo.save(user)
+      } catch (error) {
+        throw new HttpException('ไม่สามารถบันทึกข้อมูลได้คะ กรุณาลองใหม่อีกครั้งคะ', HttpStatus.BAD_REQUEST)
+      }
+      } catch (error) {}
+    } catch (error) {
+      throw new HttpException('ไม่พบผู้ใช้งานในระบบคะ', HttpStatus.BAD_REQUEST)
+    }
+  }
+
   async getAllusers() {
     const users = await this.userRepo.find({ relations: ['usergroup'] })
     return users
@@ -70,6 +89,11 @@ export class UserService {
 
   async getUserbyUsername(_username: string) {
     const user = await this.userRepo.findOne({ username: _username })
+    return user
+  }
+
+  async getUserbyUserId(userid: number) {
+    const user = await this.userRepo.findOne({ uid: userid })
     return user
   }
 

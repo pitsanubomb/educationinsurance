@@ -23,3 +23,17 @@ export class CreateUserDTO {
   @ApiModelPropertyOptional()
   groupId: number
 }
+
+export class AddfacultyDTO{
+  @ApiModelProperty({
+    description: 'username',
+    example: 'admin',
+  })
+  username: string
+
+  @ApiModelProperty({
+    description: 'facultyname',
+    example: 'คณะวิทยาศาสตร์และเทคโนโลยี',
+  })
+  facultyname: string
+}

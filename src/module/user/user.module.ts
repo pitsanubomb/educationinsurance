@@ -7,9 +7,10 @@ import { Usergroup } from './entities/usergroup.entity'
 import { UserGroupService } from './services/usergroup.service'
 import { UserGroupController } from './controllers/usergroup.controller'
 import { JwtToken } from '../share/jwt/jwttoken';
+import { Assessmentmodule } from '../assessment/assessment.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Usergroup])],
+  imports: [TypeOrmModule.forFeature([User, Usergroup]),Assessmentmodule],
   providers: [UserService, UserGroupService, JwtToken],
   controllers: [UserController, UserGroupController],
 })

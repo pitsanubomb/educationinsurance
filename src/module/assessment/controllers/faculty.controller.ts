@@ -19,8 +19,8 @@ import {
 import { FacultyService } from '../services/faculty.service';
 import { FacultyDTO } from '../assessmentdto/faculty.dto';
   
-  @Controller('year')
-  @ApiUseTags('year')
+  @Controller('faculty')
+  @ApiUseTags('faculty')
   @ApiBearerAuth()
   export class FacultyController {
     constructor(
