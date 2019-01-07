@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTabl
 import { UserDTO } from '../userdto/user.dto'
 import { Usergroup } from './usergroup.entity'
 import { Faculty } from '../../assessment/entities/faculty.entity';
+import { Course } from '../../assessment/entities/course.entity';
 
 @Entity()
 export class User {
@@ -20,6 +21,10 @@ export class User {
   @ManyToMany(type => Faculty)
   @JoinTable()
   faculty: Faculty[]
+
+  @ManyToMany(type => Course)
+  @JoinTable()
+  course: Course[]
 
   toDto(): UserDTO {
     return {
