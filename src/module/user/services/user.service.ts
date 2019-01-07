@@ -55,22 +55,16 @@ export class UserService {
 
   async addfaculty(body: AddfacultyDTO) {
     let facultylist  = []
-    try {
-      const user = await this.getUserbyUsername(body.username)
-      try {
-      body.facultyname.forEach(facultyname => {
+    const user = await this.getUserbyUsername(body.username)
+    await body.facultyname.forEach(facultyname => {
         this.facultyService.getFacultybyname(facultyname).then(res => facultylist.push(res))
-      })
-      user.faculty = facultylist
-      try {
-        await this.userRepo.save(user)
-      } catch (error) {
-        throw new HttpException('ไม่สามารถบันทึกข้อมูลได้คะ กรุณาลองใหม่อีกครั้งคะ', HttpStatus.BAD_REQUEST)
-      }
-      } catch (error) {}
+    })
+    user.faculty = await facultylist
+    try {
+      await this.userRepo.save(user)
     } catch (error) {
-      throw new HttpException('ไม่พบผู้ใช้งานในระบบคะ', HttpStatus.BAD_REQUEST)
-    }
+      throw new HttpException('ไม่สามารถบันทึกข้อมูลได้คะ กรุณาลองใหม่อีกครั้งคะ', HttpStatus.BAD_REQUEST)
+    } 
   }
 
   async getAllusers() {
