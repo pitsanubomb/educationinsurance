@@ -1,6 +1,6 @@
 FROM node:11.6-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /usr/app
 COPY package.json .
 RUN apk update && apk upgrade \
 	&& apk add --no-cache git \

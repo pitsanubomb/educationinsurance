@@ -1,6 +1,6 @@
-{
+module.exports = {
   "type": "mysql",
-  "host": "localhost",
+  "host": process.env.DATABASE_URL || "localhost",
   "port": 3306,
   "username": "root",
   "password": "root",

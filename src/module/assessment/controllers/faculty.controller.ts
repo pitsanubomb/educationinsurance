@@ -39,12 +39,12 @@ import { FacultyDTO } from '../assessmentdto/faculty.dto';
     @ApiResponse({
       status: HttpStatus.OK,
       type: FacultyDTO,
-      description: 'เพิ่มปีการศึกษาสำเร็จ',
+      description: 'เพิ่มคณะสำเร็จ',
     })
     @ApiResponse({
       status: HttpStatus.CREATED,
       type: FacultyDTO,
-      description: 'เพิ่มปีการศึกษาสำเร็จ',
+      description: 'เพิ่มคณะสำเร็จ',
     })
     async create(@Body() facultyBody: FacultyDTO) {
       try {
