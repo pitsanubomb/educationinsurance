@@ -9,7 +9,7 @@ services :
   app:
     build: .
     volumes:
-      - .:/usr/app/
+      - .:/usr/app
       - /usr/app/node_modules
     environment:
       DATABASE_URL: db

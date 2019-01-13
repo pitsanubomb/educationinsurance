@@ -8,7 +8,4 @@ RUN apk update && apk upgrade \
 	&& npm install -g nodemon cross-env eslint npm-run-all node-gyp node-pre-gyp && npm install\
 	&& npm rebuild bcrypt --build-from-source
 
-EXPOSE 8080
-CMD [ "npm", "start" ]
-
 COPY . .
