@@ -44,7 +44,7 @@ import { FacultyDTO } from '../assessmentdto/faculty.dto';
     @ApiResponse({
       status: HttpStatus.CREATED,
       type: FacultyDTO,
-      description: 'เพิ่มคณะสำเร็จjfkjakjf',
+      description: 'เพิ่มคณะสำเร็จ',
     })
     async create(@Body() facultyBody: FacultyDTO) {
       try {
