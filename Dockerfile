@@ -7,5 +7,3 @@ RUN apk update && apk upgrade \
 	&& apk --no-cache add --virtual builds-deps build-base python \
 	&& npm install -g nodemon cross-env eslint npm-run-all node-gyp node-pre-gyp && npm install\
 	&& npm rebuild bcrypt --build-from-source
-
-COPY . .
